@@ -1,5 +1,13 @@
 # Superpowers Release Notes
 
+## v4.3.2 (TBD)
+
+### Added
+
+**Claude Code: Project-scoped plugin support**
+
+Superpowers now supports Claude Code's project-scoped plugin installs, allowing you to install the plugin for a specific project instead of globally. Run `/plugin install superpowers@superpowers-marketplace` within a specific project to create a project-local installation in `.claude-plugin/`. The SessionStart hook automatically detects both global and project-scoped installations via the `CLAUDE_PLUGIN_ROOT` environment variable.
+
 ## v4.3.1 (2026-02-21)
 
 ### Added
@@ -575,7 +583,7 @@ We now use Anthropic's first-party skills system!
 
 Superpowers v2.0 makes skills more accessible, maintainable, and community-driven through a major architectural shift.
 
-The headline change is **skills repository separation**: all skills, scripts, and documentation have moved from the plugin into a dedicated repository ([obra/superpowers-skills](https://github.com/obra/superpowers-skills)). This transforms superpowers from a monolithic plugin into a lightweight shim that manages a local clone of the skills repository. Skills auto-update on session start. Users fork and contribute improvements via standard git workflows. The skills library versions independently from the plugin.
+The headline change is **skills repository separation**: all skills, scripts, and documentation have moved from the plugin into a dedicated repository ([fiascosauce/superpowers-skills](https://github.com/fiascosauce/superpowers-skills)). This transforms superpowers from a monolithic plugin into a lightweight shim that manages a local clone of the skills repository. Skills auto-update on session start. Users fork and contribute improvements via standard git workflows. The skills library versions independently from the plugin.
 
 Beyond infrastructure, this release adds nine new skills focused on problem-solving, research, and architecture. We rewrote the core **using-skills** documentation with imperative tone and clearer structure, making it easier for Claude to understand when and how to use skills. **find-skills** now outputs paths you can paste directly into the Read tool, eliminating friction in the skills discovery workflow.
 
@@ -585,7 +593,7 @@ Users experience seamless operation: the plugin handles cloning, forking, and up
 
 ### Skills Repository Separation
 
-**The biggest change:** Skills no longer live in the plugin. They've been moved to a separate repository at [obra/superpowers-skills](https://github.com/obra/superpowers-skills).
+**The biggest change:** Skills no longer live in the plugin. They've been moved to a separate repository at [fiascosauce/superpowers-skills](https://github.com/fiascosauce/superpowers-skills).
 
 **What this means for you:**
 
@@ -600,7 +608,7 @@ Users experience seamless operation: the plugin handles cloning, forking, and up
 If you have an existing installation:
 1. Your old `~/.config/superpowers/.git` will be backed up to `~/.config/superpowers/.git.bak`
 2. Old skills will be backed up to `~/.config/superpowers/skills.bak`
-3. Fresh clone of obra/superpowers-skills will be created at `~/.config/superpowers/skills/`
+3. Fresh clone of fiascosauce/superpowers-skills will be created at `~/.config/superpowers/skills/`
 
 ### Removed Features
 
@@ -612,7 +620,7 @@ If you have an existing installation:
 ### Skills Repository Infrastructure
 
 **Automatic Clone & Setup** (`lib/initialize-skills.sh`)
-- Clones obra/superpowers-skills on first run
+- Clones fiascosauce/superpowers-skills on first run
 - Offers fork creation if GitHub CLI is installed
 - Sets up upstream/origin remotes correctly
 - Handles migration from old installation
@@ -717,8 +725,8 @@ If you have an existing installation:
 - `.claude-plugin/marketplace.json` - Local testing config
 
 **Removed:**
-- `skills/` directory (82 files) - Now in obra/superpowers-skills
-- `scripts/` directory - Now in obra/superpowers-skills/skills/using-skills/
+- `skills/` directory (82 files) - Now in fiascosauce/superpowers-skills
+- `scripts/` directory - Now in fiascosauce/superpowers-skills/skills/using-skills/
 - `hooks/setup-personal-superpowers.sh` - Obsolete
 
 **Modified:**
@@ -742,7 +750,7 @@ This release includes:
 
 ```bash
 # In Claude Code
-/plugin marketplace add obra/superpowers-marketplace
+/plugin marketplace add fiascosauce/superpowers-marketplace
 /plugin install superpowers@superpowers-marketplace
 ```
 
@@ -781,7 +789,7 @@ The plugin handles everything automatically.
 
 ### For Contributors
 
-- Skills repository is now at https://github.com/obra/superpowers-skills
+- Skills repository is now at https://github.com/fiascosauce/superpowers-skills
 - Fork → Branch → PR workflow
 - See skills/meta/writing-skills/SKILL.md for TDD approach to documentation
 
@@ -797,6 +805,6 @@ None at this time.
 
 ---
 
-**Full Changelog:** https://github.com/obra/superpowers/compare/dd013f6...main
-**Skills Repository:** https://github.com/obra/superpowers-skills
-**Issues:** https://github.com/obra/superpowers/issues
+**Full Changelog:** https://github.com/fiascosauce/superpowers/compare/dd013f6...main
+**Skills Repository:** https://github.com/fiascosauce/superpowers-skills
+**Issues:** https://github.com/fiascosauce/superpowers/issues
